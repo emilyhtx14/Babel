@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>  
+    {% include 'detect/navbar.html' %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <h1> Choose a Language </h1>
+
+    
+        <form action = "" method = 'POST'>
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value = 'Save'/ size="90">
+        </form>
+        <br>
+        <br>
+        <br>
+<!--
+        <p>
+            Use this form to select which language you want to translate to!
+        </p>
+        -->
+
+        <style>
+        form{
+            /*background-image: url('https://lh3.googleusercontent.com/proxy/I98TOD55vRGqwTuf1qgqkGxP1uY6_Zg6MvortNfp1ipaJy95zNtmgeBVOttM376Smyrc6QRJwa1S_H-cLNuWGlA1LjEvx8w');*/
+            size:100px;
+        }
+        h1{
+            font-weight: 400;
+            /*
+            background-color:rgba(255, 255, 255, 0.3);
+            background-opacity: 0.5;
+            margin-left: 20%;
+            margin-right: 20%;
+            border-radius: 20px;
+            
+            background-image: url('https://lh3.googleusercontent.com/proxy/I98TOD55vRGqwTuf1qgqkGxP1uY6_Zg6MvortNfp1ipaJy95zNtmgeBVOttM376Smyrc6QRJwa1S_H-cLNuWGlA1LjEvx8w');*/
+        }
+        body{
+        background-image: url('https://wallpapercave.com/wp/wp7023522.png');
+        background-repeat: repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        color: #4b4bcc;
+        text-align: center;
+        font-size: 32px;
+        font-weight:normal;
+        font-family: 'Roboto', sans-serif;
+        }
+        </style>
+    </body>
+</html>

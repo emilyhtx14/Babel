@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<html lang="en">
+<head>
+
+    <style>
+    h1 {
+        color: black;
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+    }
+    </style>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <form method = "post" enctype = "multipart/form-data">
+        {% csrf_token %}
+
+        <input type="file" name="afile" accept="image/*" capture="camera">
+        <button id = 'uploader' class = 'hidden' type="submit">Upload Image</button>
+        <style>
+        .button {
+            background-color: #2980B9;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+            }
+        </style>
+
+        {% for name in names %}
+            {{ name }}
+
+        {% endfor %}
+
+         {% for store in total %}
+         entered into total loop
+            {{ store }}
+        {% endfor %}
+
+        
+    </form>
+</head>
+    <body>
+        <style>
+        body {
+        background-image: url('https://wallpapercave.com/wp/wp7023522.png');
+        background-repeat: repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        }
+
+        </style>
+    </body>
+</html>l

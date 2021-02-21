@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<html lang="en">
+<head>
+</head>
+
+{% include 'detect/navbar.html' %}
+<body>
+
+        <br>
+        <br> 
+        <br>
+        <br>
+<h2> SCAN & UPLOAD</h2>
+<p> Snap a quick picture here!</p>
+        <br>
+        <br>
+
+    <p style="color:#2e2e70";>
+    <form method = "post" enctype = "multipart/form-data">
+        {% csrf_token %}
+        <div class = 'square'>
+            <br>
+            <br>
+            <input id="inp" width="100" height="30" type="file" name="myfile" accept="image/*" capture="camera">
+            <br>
+            <br>
+            <br>
+        </div>
+        <br>
+        <br>
+        <br>
+        <button id = 'uploader' class = 'hidden' type="submit">Upload Image</button>
+        
+        <style>
+        .button {
+            background-color: #2980B9;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+            }
+        .square{
+            /*background-color: #d7c8e8;*/
+            background: url('https://media.istockphoto.com/vectors/sky-and-clouds-background-sky-and-cloud-with-blue-color-cartoon-vector-id1084416182?k=6&m=1084416182&s=612x612&w=0&h=1n42_eBf348dNub41s2Y-daq7SLU-zBVutLJY_xcnJg=');
+            background-size: cover;
+            margin-left: 5%;
+            margin-right:5%;
+            border-radius: 12px;
+        }
+        body{
+            text-align:center;
+            color: black;
+            margin-left: 0px;
+            margin-right: 10px;
+        }
+
+        h2{
+            font-weight: 400;
+            color: #0e2157;
+            }
+
+        #inp {
+            align: center;
+            margin-left: 25%;
+            margin-right: 25%%
+            }
+
+        </style>
+
+        <!-- iterates and prints the list of english terms from the scan-->
+        {% for name in names %}
+            {{ name }}
+        {% endfor %}
+
+        <!-- keep for testing purposes
+         
+         {% for store in total %}
+         entered into total loop
+            {{ store }}
+        {% endfor %}
+        -->
+    </form>
+    </p>
+
+    <style>
+    body {
+    background-image: url('https://wallpapercave.com/wp/wp7023522.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    }
+ </style>
+
+
+</body>
+</html>
