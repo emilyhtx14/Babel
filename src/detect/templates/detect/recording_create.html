@@ -3,15 +3,15 @@
 <html lang="en">
 
 
-
 <head>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
   {% load static %}
-  <!-- <script src={% static "Education/record.js" %}></script>-->
+  <!--
 <div class = "nav">
   {% include 'detect/navbar.html' %}
 </div>
+-->
 
   <br>
   <br>
@@ -27,6 +27,7 @@
 
 
   <body>
+
     <form action = '' method = 'POST'>
     <br>
     {% csrf_token %}
@@ -36,7 +37,7 @@
     {{form}}
     <br>
     <br>
-    <button id = "recordButton" type="button" class="btn btn-outline-primary" style="height:82px;width:150;font-size: 30px;" >Record Here</button>
+    
     <br>
     <br>
     <input type="submit" style="
@@ -49,6 +50,7 @@
       margin: 8px 0;
     " value="Submit" />
     </form>
+    <button id = "recordButton" type="button" class="btn btn-outline-primary" style="height:82px;width:150;font-size: 30px;" >Record Here</button>
 </body>
 
 <style>
@@ -69,10 +71,7 @@ body {
 {% comment %} street: https://i.ibb.co/mbLNWwD/street.jpg {% endcomment %}
 </style>
 
-
 <script>
-
-
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
@@ -85,16 +84,15 @@ var speechRecognitionList = new SpeechGrammarList();
 // speechRecognitionList.addFromString(grammar, 1);
 // recognition.grammars = speechRecognitionList;
 recognition.continuous = false;
-//list of languages: https://appmakers.dev/bcp-47-language-codes-list/
-recognition.lang = 'en-US'; //'en-US' 'zh-CN'
+recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 var diagnostic = document.querySelector('.output');
-var bg = document.querySelector('index1.html');
+var bg = document.querySelector('html');
 var hints = document.querySelector('.hints');
 
-var colorHTML = '';
+var colorHTML= '';
 /*
 colors.forEach(function(v, i, a){
   console.log(v, i);
@@ -102,55 +100,44 @@ colors.forEach(function(v, i, a){
 });
 */
 
-// hints.innerHTML = 'Tap/click then say a word to open two windows. Try ' + '\'Winter\' or \'Summer\'' + '.';
-const voiceStart = document.getElementById('recordButton');
-voiceStart.onclick = voice;
+//hints.innerHTML = 'Tap/click then say a word to open two windows. Try ' + '\'Winter\' or \'Summer\'' + '.';
 
-function voice() {
-    recognition.start();
-    console.log('Ready to receive a command.');
+document.getElementById('recordButton').onclick = function() {
+  recognition.start();
+  console.log('Ready to receive a command.');
 }
 
-recognition.onresult = function (event) {
-    // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
-    // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
-    // It has a getter so it can be accessed like an array
-    // The first [0] returns the SpeechRecognitionResult at the last position.
-    // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
-    // These also have getters so they can be accessed like arrays.
-    // The second [0] returns the SpeechRecognitionAlternative at position 0.
-    // We then return the transcript property of the SpeechRecognitionAlternative object
-    var color = event.results[0][0].transcript;
-    // diagnostic.textContent = 'Result received: ' + color + '.';
-    // bg.style.backgroundColor = color;
-
-
-    console.log('The command:: -- ' + color);
-    console.log('Confidence: ' + event.results[0][0].confidence);
-    document.getElementById('recording-text-area').innerHTML = event.results[0][0].transcript;
-
-    //document.getElementById("demo1").innerHTML = color;
-
-}
-/*
-        recognition.onclick = function() {
-          recognition.start();
-          console.log('Ready to receive command ');
-        }
-
- */
-recognition.onspeechend = function () {
-    console.log('onseechend: stop! ');
-    recognition.stop();
+recognition.onresult = function(event) {
+  //
+  // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+  // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
+  // It has a getter so it can be accessed like an array
+  // The first [0] returns the SpeechRecognitionResult at the last position.
+  // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
+  // These also have getters so they can be accessed like arrays.
+  // The second [0] returns the SpeechRecognitionAlternative at position 0.
+  // We then return the transcript property of the SpeechRecognitionAlternative object
+  //
+  var color = event.results[0][0].transcript;
+  // diagnostic.textContent = 'Result received: ' + color + '.';
+  // bg.style.backgroundColor = color
+  console.log('The command:: -- ' + color);
+  console.log('Confidence: ' + event.results[0][0].confidence);
+  document.getElementById('recording-text-area').innerHTML = event.results[0][0].transcript;
 }
 
-recognition.onnomatch = function (event) {
-    console.log('Invalid Color ');
-    diagnostic.textContent = "I didn't recognise that color.";
+recognition.onspeechend = function() {
+  console.log('onspeechend: NOT stop!');
+  recognition.stop();
 }
 
-recognition.onerror = function (event) {
-    diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+recognition.onnomatch = function(event) {
+  console.log('Invalid Color ');
+  diagnostic.textContent = "I didn't recognise that color.";
+}
+
+recognition.onerror = function(event) {
+  diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
 }
 
 </script>
